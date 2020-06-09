@@ -32,12 +32,70 @@ h1 {
     box-shadow: 5px 5px 10px 0 #262626;
 }
 
+.info-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 350px;
+    background-color: rgba(115, 91, 70, 0.5);
+    color: #262626;
+    border-radius: 20px 20px 0 0;
+    opacity: 0;
+    transition: .3s linear;
+}
+
+h4 {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translateY(-50%);
+}
+
+.container.play .info-container {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+}
+
+.progress-container {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    background-color: #D9C3A9;
+    height: 4px;
+    width: 55%;
+    margin-top: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.progress {
+    background-color: #262626;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width .1s linear;
+}
+
 .img-container {
     position: absolute;
     top: -40px;
     left: 30px;
     animation: rotate 5s linear infinite;
     animation-play-state: paused;
+}
+
+.img-container::after {
+    content: "";
+    background-color: #262626;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .container.play .img-container {
@@ -48,8 +106,18 @@ img {
     height: 115px;
     width: 115px;
     border-radius: 50%;
-    border: 1px solid #262626;
+    border: 2px solid #262626;
     object-fit: cover;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .controls {
@@ -76,14 +144,4 @@ button.big {
 
 button:focus {
     outline: 0;
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
 }
