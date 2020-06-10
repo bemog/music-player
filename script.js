@@ -23,3 +23,28 @@ const updateSong = () => {
 }
 
 updateSong(songs[songIndex]);
+
+// Play song and change button
+const playSong = () => {
+    container.classList.add('play');
+    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+
+    audio.play();
+}
+
+// Pause song and change button
+const pauseSong = () => {
+    container.classList.remove('play');
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+
+    audio.pause();
+}
+
+// Event listeners
+playBtn.addEventListener('click', () => {
+    if (!container.classList.contains('play')) {
+        playSong();
+    } else {
+        pauseSong();
+    }
+})
