@@ -60,8 +60,23 @@ const prevSong = () => {
     playSong();
 }
 
+// Update progress bar
+const updateProgress = (e) => {
+    const progressPercent = (e.srcElement.currentTime / e.srcElement.duration) * 100;
+    progress.style.width = `${progressPercent}%`;
+}
+
+// Set progress time by click
+const setProgressTime = (e) => {
+    const width = progressContainer.offsetWidth;
+    const mouseX = e.offsetX;
+    const duration = audio.duration;
+
+    audio.currentTime = (mouseX / width) * duration;
+}
 
 // Event listeners
+// Play/pause song
 playBtn.addEventListener('click', () => {
     if (!container.classList.contains('play')) {
         playSong();
@@ -70,5 +85,15 @@ playBtn.addEventListener('click', () => {
     }
 })
 
+// Change song
 nextBtn.addEventListener('click', nextSong);
 prevBtn.addEventListener('click', prevSong);
+
+// Progress bar
+audio.addEventListener('timeupdate', updateProgress);
+
+// Set current time
+progressContainer.addEventListener('click', setProgressTime)
+
+// Next song after
+audio.addEventListener('ended', nextSong);
