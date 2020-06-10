@@ -40,6 +40,27 @@ const pauseSong = () => {
     audio.pause();
 }
 
+// Next song
+const nextSong = () => {
+    songIndex++;
+    if (songIndex >= songs.length) {
+        songIndex = 0;
+    }
+    updateSong(songs[songIndex]);
+    playSong();
+}
+
+// Previous song
+const prevSong = () => {
+    songIndex--;
+    if (songIndex < 0) {
+        songIndex = songs.length - 1;
+    }
+    updateSong(songs[songIndex]);
+    playSong();
+}
+
+
 // Event listeners
 playBtn.addEventListener('click', () => {
     if (!container.classList.contains('play')) {
@@ -48,3 +69,6 @@ playBtn.addEventListener('click', () => {
         pauseSong();
     }
 })
+
+nextBtn.addEventListener('click', nextSong);
+prevBtn.addEventListener('click', prevSong);
